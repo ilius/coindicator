@@ -1,4 +1,6 @@
 #!/bin/bash
+set -x
+
 # Install system dependencies
 if [[ $# -eq 0 ]]
     then
@@ -24,9 +26,7 @@ sudo apt-get install python3-venv python3-setuptools-scm python3-wheel python3-g
 
 # Install python packages
 sudo mkdir ${args[0]} 2>/dev/null
-sudo python3 -m venv ${args[0]}/venv
-source ${args[0]}/venv/bin/activate
-sudo -H -E env PATH=$PATH pip3 install -U coindicator
+pip3 install -U . --user
 
 # Install shortcut
 cat > /tmp/coindicator.desktop << EOL
